@@ -17,7 +17,7 @@ import {
   GANK_EASY_CATEGORY_SUCCESS,
   GANK_EASY_CATEGORY_REQUEST,
   GANK_EASY_CATEGORY_MODIFY
-} from './../actions'
+} from './../actions/actionTypes'
 
 const gank = (state = gankState, action) => {
   switch (action.type) {
