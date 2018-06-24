@@ -1,0 +1,19 @@
+@value tabBarHeight from './../../style/values.less';
+
+.tabBar {
+  height: tabBarHeight;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -3px 8px #ddd;
+  background-color: #fff;
+  ul {
+    display: flex;
+  }
+  li {
+    flex: 1;
+    text-align: center;
+    line-height: tabBarHeight;
+  }
+}

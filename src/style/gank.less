@@ -1,0 +1,99 @@
+@value tabBarHeight, tabBarHeight, easyMenuWidth from './values.less';
+@value border: 1px solid #eee;
+
+.gankWrap {
+  padding-bottom: tabBarHeight;
+  box-sizing: border-box;
+}
+
+.gankSetting {
+  li {
+    height: 50px;
+    line-height: 50px;
+    background: url(./../assets/images/sortable.png) no-repeat left 10px center;
+    background-size: 24px 24px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+      margin-left: 50px;
+    }
+  }
+  li + li {
+    border-top: border;
+  }
+  .sortabSelect {
+    border-top: border;
+    border-bottom: border;
+  }
+  .gankSettingToggle {
+    display: flex;
+    margin-right: 20px;
+  }
+}
+.gankWelfare {
+  img {
+    width: 33.3%;
+    transition-duration: .5s;
+  }
+}
+.gankEasy {
+  .gankEasyMenuIcon {
+    position: fixed;
+    right: 10px;
+    bottom: 100px;
+    img {
+      width: 35px;
+    }
+  }
+  .gankEasyMenuIconAnim {
+    animation: menuIcon .5s linear .5s 2;
+  }
+  .gankEasyMainCate {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: tabBarHeight;
+    width: easyMenuWidth;
+    border-right: 1px solid #eee;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+    ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      bottom: 0;
+      transition-duration: .2s;
+      transition-timing-function: ease-out;
+      background-color: #fff;
+    }
+    .gankEasyMainCateUl {
+      z-index: 2;
+    }
+    .gankEasySubCateUl {
+      left: easyMenuWidth;
+      z-index: 1;
+    }
+    li {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    li + li {
+      border-top: 1px solid #eee;
+    }
+  }
+}
+@keyframes menuIcon {
+  from {
+    transform: scale(1, 1)
+  }
+  to {
+    transform: scale(1.5, 1.5)
+  }
+}

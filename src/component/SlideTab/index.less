@@ -1,0 +1,48 @@
+@main-color: #03A9F4;
+@value otherSlidFlex, slidItemsFlex from './../../style/values.less';
+
+.slidTabWrap {
+}
+.slidTab {
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  background-color: @main-color;
+  color: #fff;
+  display: flex;
+  box-shadow: 0 3px 5px #ddd;
+  .slidTabItems {
+    overflow-x: auto;
+    display: flex;
+    flex: slidItemsFlex;
+    .slidItem {
+      text-align: center;
+    }
+    .slidTabItemsWrap {
+      position: relative;
+    }
+  }
+  .tabLine {
+    height: 5px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    transition-duration: .2s;
+  }
+  .otherSlid {
+    flex: otherSlidFlex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      position: absolute;
+      width: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .otherSlidShadow {
+    box-shadow: -3px 0 8px rgba(123, 97, 97, 0.8);
+  }
+}
