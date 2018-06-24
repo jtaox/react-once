@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import 'reset-css'
-import './App.css'
+import './style/App.css'
 import Root from './container/Root'
 
 class App extends Component {
