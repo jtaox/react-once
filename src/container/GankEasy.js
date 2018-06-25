@@ -1,6 +1,6 @@
 import GankEasy from './../component/GankEasy'
 import { connect } from 'react-redux'
-import { getEasyCategory, getEasySubCategory, modifyGankEasyCateSelect as modifyCateSelect } from './../actions'
+import { getEasyCategory, modifyGankEasyCateSelect as modifyCateSelect } from './../actions'
 
 const mapStateToProps = (state, ownProps) => {
   const { 
@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = {
   getEasyCategory,
-  getEasySubCategory,
   modifyCateSelect
 }
 

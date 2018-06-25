@@ -121,6 +121,7 @@ const gank = (state = gankState, action) => {
         // http://yazhen.me/2017/02/13/React-%E4%BF%AE%E6%94%B9state%E6%B2%A1%E6%9C%89%E9%87%8D%E6%96%B0%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98/
         let { sub } = state.easyCategory;
         sub = {
+          ...sub,
           [cate]: {
             list: [...action.result.results]
           },

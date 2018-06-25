@@ -42,12 +42,6 @@ const buildGankEasyAction = ({ path: cate }, page, modules, types) => {
   }
 }
 
-export const getEasySubCategory = (cate) => (dispatch, getState) => {
-  // const url = `/gank/api/xiandu/category/${ cate }`
-  // return getEasyCategory(url, { dispatch, getState })
-}
-
-
 // 获取gank分类数据
 export const getCategory = () => {
   let category = gankCategoryCache()

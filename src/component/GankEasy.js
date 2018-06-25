@@ -12,11 +12,16 @@ class GankEasy extends Component {
     }
   }
   componentDidMount() {
-    this.props.getEasyCategory()
+    this.props.getEasyCategory({
+      useCache: this.props.mainCategory.list.length
+    })
   }
   
   mainCateClick({ name, en_name }) {
-    this.props.getEasyCategory({ path: en_name })
+    this.props.getEasyCategory({ 
+      path: en_name,
+      useCache: this.props.subCategory[en_name]
+    })
     this.setState({
       subUlState: true,
       mainSelect: en_name
@@ -55,7 +60,6 @@ class GankEasy extends Component {
           </ul>
           <ul className={ style.gankEasySubCateUl } style={ this.subUlStyle() }>
             { this.props.subCategory.isFetching && <span>加载中...</span> }
-            { console.log(mainSelect) }
             { mainSelect && sub[mainSelect] && sub[mainSelect].list.map(item => <li onClick={ () => this.subCateClick(item) } key={ item._id }>{ item.title }</li>) }
           </ul>
         </div>
