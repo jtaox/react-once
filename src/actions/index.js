@@ -67,8 +67,7 @@ export const modifyCategory = ({ list }) => {
   }
 }
 
-export const modifyGankEasyCateSelect = (...args) => {
-  const sele = args.join(',')
+export const modifyGankEasyCateSelect = (sele) => {
   return {
     type: GANK_EASY_CATEGORY_MODIFY,
     sele

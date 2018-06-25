@@ -18,10 +18,15 @@ class GankEasy extends Component {
   }
   
   mainCateClick({ name, en_name }) {
+    // 获取子菜单数据
     this.props.getEasyCategory({ 
       path: en_name,
       useCache: this.props.subCategory[en_name]
     })
+    this.props.modifyCateSelect({
+      main: en_name
+    })
+    // 子菜单动画
     this.setState({
       subUlState: true,
       mainSelect: en_name
@@ -29,7 +34,9 @@ class GankEasy extends Component {
   }
 
   subCateClick({ id }) {
-    this.props.modifyCateSelect([this.state.mainSelect, id])
+    this.props.modifyCateSelect({
+      sub: id
+    })
   }
 
   subUlStyle() {
@@ -47,8 +54,7 @@ class GankEasy extends Component {
   }
 
   render() {
-    const { mainCategory: main, subCategory: sub } = this.props
-    const { mainSelect } = this.state
+    const { mainCategory: main, mainCategory: { defSelect: mainSelect }, subCategory: sub, subCategory: { defSelect: subSelect } } = this.props
     return (
       <div className={ style.gankEasy }>
         <div className={ [style.gankEasyMenuIcon, style.gankEasyMenuIconAnim].join(' ') } onClick={ () => this.setState({ mainUlState: true }) }>
@@ -56,11 +62,11 @@ class GankEasy extends Component {
         </div>
         <div className={ style.gankEasyMainCate } style={ this.mainUlStyle() }>
           <ul className={ style.gankEasyMainCateUl }>
-            { main.list.map(item => <li onClick={ () => this.mainCateClick(item) } key={ item._id }>{ item.name }</li>) }
+            { main.list.map(item => <li className={ mainSelect === item.en_name ? style.cateSelect : '' } onClick={ () => this.mainCateClick(item) } key={ item._id }>{ item.name }</li>) }
           </ul>
           <ul className={ style.gankEasySubCateUl } style={ this.subUlStyle() }>
             { this.props.subCategory.isFetching && <span>加载中...</span> }
-            { mainSelect && sub[mainSelect] && sub[mainSelect].list.map(item => <li onClick={ () => this.subCateClick(item) } key={ item._id }>{ item.title }</li>) }
+            { mainSelect && sub[mainSelect] && sub[mainSelect].list.map(item => <li className={ subSelect === item.id ? style.cateSelect : '' } onClick={ () => this.subCateClick(item) } key={ item._id }>{ item.title }</li>) }
           </ul>
         </div>
       </div>

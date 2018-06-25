@@ -87,15 +87,24 @@ const gank = (state = gankState, action) => {
         ...state
       }
     case GANK_EASY_CATEGORY_MODIFY:
-      const sele = action.sele.split(',')
-      const {
+      const { main: mainSele, sub: subSele } = action.sele
+      let {
         main,
         sub
       } = state.easyCategory
-      main.defSelect = sele[0]
-      sub.defSelect = sele[1]
+      mainSele && (main = {
+        ...main,
+        defSelect: mainSele
+      })
+      subSele && (sub = {
+        ...sub,
+        defSelect: subSele
+      })
       return {
-        ...state
+        ...state,
+        easyCategory: {
+          main, sub
+        }
       }
     case GANK_EASY_CATEGORY_REQUEST:
       const {
