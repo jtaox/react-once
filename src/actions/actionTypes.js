@@ -1,20 +1,28 @@
-// gank request
+// gank index
 export const GANK_REQUEST = 'GANK_REQUEST'
 export const GANK_SUCCESS = 'GANK_SUCCESS'
 export const GANK_FAILURE = 'GANK_FAILURE'
 
+// gank welfare
 export const GANK_WELFARE_REQUEST = 'GANK_WELFARE_REQUEST'
 export const GANK_WELFARE_SUCCESS = 'GANK_WELFARE_SUCCESS'
 export const GANK_WELFARE_FAILURE = 'GANK_WELFARE_FAILURE'
 
+// gank easy category
 export const GANK_EASY_CATEGORY_REQUEST = 'GANK_EASY_CATEGORY_REQUEST'
 export const GANK_EASY_CATEGORY_SUCCESS = 'GANK_EASY_CATEGORY_SUCCESS'
 export const GANK_EASY_CATEGORY_FAILURE = 'GANK_EASY_CATEGORY_FAILURE'
 
-// gank category
+// gank easy list
+export const GANK_EASY_LIST_REQUEST = 'GANK_EASY_LIST_REQUEST'
+export const GANK_EASY_LIST_SUCCESS = 'GANK_EASY_LIST_SUCCESS'
+export const GANK_EASY_LIST_FAILURE = 'GANK_EASY_LIST_FAILURE'
+
+// gank index modify category
 export const GANK_CATEGORY_MODIFY = 'GANK_CATEGORY_MODIFY'
 
-// 闲读
+// gank easy mofidy category select
 export const GANK_EASY_CATEGORY_MODIFY = 'GANK_EASY_CATEGORY_MODIFY'
 
+// gank index menu
 export const MENU_CHANGE = 'MENU_CHANGE'

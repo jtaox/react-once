@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getGankWelfareList } from './../actions'
 
 const mapState2Props = (state, ownProps) => {
-  const { isFetching, list } = state.gank.welfare
+  const { isFetching, list } = state.gank.gankWelfare
   return {
     isFetching,
     list

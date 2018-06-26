@@ -4,7 +4,9 @@ import { getGankList as getList, getCategory  } from './../actions'
 import { gankSlideIndexCache } from './../utils'
 
 const mapState2Props = (state, ownProps) => {
-  const { index: list, index: { isFetching }, category } = state.gank
+  console.log(state)
+  const { list, isFetching } = state.gank.gankIndex
+  const { category } = state.gank.gankIndexCategory
   return {
     list,
     isFetching,

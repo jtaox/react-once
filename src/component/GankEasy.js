@@ -37,6 +37,7 @@ class GankEasy extends Component {
     this.props.modifyCateSelect({
       sub: id
     })
+    this.props.getData(id)
   }
 
   subUlStyle() {

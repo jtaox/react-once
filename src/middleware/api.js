@@ -13,15 +13,14 @@ const api = (dispatch, getState) => next => action => {
     })
   }
   return http.get(action.url).then(result => {
-    if (type === GENERAL_API) {
-      return result
-    } else {
+    if (type === API) {
       next({
         ...action,
         type: SUCCESS,
         result,
       })
     }
+    return result
   }, err => {
     if (type === API) {
       next({

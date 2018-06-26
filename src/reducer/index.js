@@ -1,12 +1,15 @@
+import { combineReducers } from "redux";
 import {
-  combineReducers
-} from 'redux'
-import {
-  gankState
-} from './defaultState'
+  gankState,
+  gankIndexState,
+  gankWelfareState,
+  getEasyCategoryState,
+  getEasyListState,
+  gankIndexCategoryState
+} from "./defaultState";
 import {
   GANK_REQUEST,
-  // GANK_FAILURE, 
+  // GANK_FAILURE,
   GANK_SUCCESS,
   MENU_CHANGE,
   GANK_CATEGORY_MODIFY,
@@ -16,159 +19,193 @@ import {
   GANK_EASY_CATEGORY_FAILURE,
   GANK_EASY_CATEGORY_SUCCESS,
   GANK_EASY_CATEGORY_REQUEST,
-  GANK_EASY_CATEGORY_MODIFY
-} from './../actions/actionTypes'
+  GANK_EASY_CATEGORY_MODIFY,
+  GANK_EASY_LIST_REQUEST,
+  GANK_EASY_LIST_SUCCESS,
+  GANK_EASY_LIST_FAILURE
+} from "./../actions/actionTypes"
 
-const gank = (state = gankState, action) => {
+const gankIndex = (state = gankIndexState, action) => {
   switch (action.type) {
     case GANK_SUCCESS:
-      const modulesName = action.modulesName
-      let data = state[modulesName][action.id]
-      const resultList = action.result.results
+      let data = state.list[action.id];
+      const resultList = action.result.results;
       if (data) {
-        data = { ...data,
+        data = {
+          ...data,
           list: [...data.list, ...resultList],
           page: ++action.page
-        }
-        state[modulesName][action.id] = data
+        };
+        state.list[action.id] = data;
       } else {
-        state[modulesName][action.id] = {
+        state.list[action.id] = {
           list: resultList || [],
           page: ++action.page
-        }
+        };
       }
-      state[modulesName].isFetching = false
+      state.isFetching = false;
       return {
         ...state
-      }
+      };
     case GANK_REQUEST:
-      const {
-        index
-      } = state
       return {
         ...state,
-        index: {
-          ...index,
-          isFetching: true
-        }
-      }
+        isFetching: true
+      };
+    default:
+      return state;
+  }
+};
+
+const gankIndexCategory = (state = gankIndexCategoryState, action) => {
+  switch (action.type) {
     case GANK_CATEGORY_MODIFY:
       return {
         ...state,
         category: action.payload.category
-      }
+      };
+    default:
+      return state;
+  }
+}
+
+const gankWelfare = (state = gankWelfareState, action) => {
+  switch (action.type) {
     case GANK_WELFARE_REQUEST:
-      const {
-        welfare
-      } = state
       return {
         ...state,
-        welfare: {
-          ...welfare,
-          isFetching: true
-        }
+        isFetching: true,
       }
     case GANK_WELFARE_SUCCESS:
-      const result = action.result.results
-      let list = state[action.modulesName].list
+      const result = action.result.results;
+      let list = state.list;
       if (list) {
-        list = [...list, ...result]
+        list = [...list, ...result];
       } else {
-        list = result
+        list = result;
       }
       return Object.assign({}, state, {
-        [action.modulesName]: {
-          isFetching: false,
-          list
-        }
-      })
+        isFetching: false,
+        list
+      });
     case GANK_WELFARE_FAILURE:
       return {
         ...state
-      }
+      };
+    default:
+      return state;
+  }
+};
+
+const gankEasyCategory = (state = getEasyCategoryState, action) => {
+  switch (action.type) {
     case GANK_EASY_CATEGORY_MODIFY:
-      const { main: mainSele, sub: subSele } = action.sele
-      let {
-        main,
-        sub
-      } = state.easyCategory
-      mainSele && (main = {
-        ...main,
-        defSelect: mainSele
-      })
-      subSele && (sub = {
-        ...sub,
-        defSelect: subSele
-      })
+      const { main: mainSele, sub: subSele } = action.sele;
+      let { main, sub } = state;
+      mainSele &&
+        (main = {
+          ...main,
+          defSelect: mainSele
+        });
+      subSele &&
+        (sub = {
+          ...sub,
+          defSelect: subSele
+        });
       return {
         ...state,
-        easyCategory: {
-          main, sub
+        main,
+        sub
+      };
+    case GANK_EASY_CATEGORY_REQUEST: {
+      let { sub, main } = state
+      if (action.cate) {
+        sub = {
+          ...sub,
+          isFetching: true
+        }
+      } else {
+        main = {
+          ...main,
+          isFetching: true
         }
       }
-    case GANK_EASY_CATEGORY_REQUEST:
-      const {
-        easyCategory
-      } = state
-      if (action.cate) {
-        easyCategory.sub.isFetching = true
-      } else {
-        easyCategory.main.isFetching = true
-      }
       return {
-        ...state
+        ...state,
+        sub, main
       }
-    case GANK_EASY_CATEGORY_SUCCESS:
-      const {
-        cate
-      } = action
+    }
+    case GANK_EASY_CATEGORY_SUCCESS: {
+      const { cate } = action;
       if (cate) {
         // state.easyCategory.sub[cate] = {
         //   list: [...action.result.results]
         // }
         // state.easyCategory.sub.isFetching = false
         // http://yazhen.me/2017/02/13/React-%E4%BF%AE%E6%94%B9state%E6%B2%A1%E6%9C%89%E9%87%8D%E6%96%B0%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98/
-        let { sub } = state.easyCategory;
+        let { sub } = state;
         sub = {
           ...sub,
           [cate]: {
             list: [...action.result.results]
           },
           isFetching: false
-        }
-        state.easyCategory.sub = sub
+        };
+        state.sub = sub;
       } else {
-        state.easyCategory.main.list = action.result.results
-        state.easyCategory.main.isFetching = false
+        state.main.list = action.result.results;
+        state.main.isFetching = false;
       }
       // return {
       //   ...state
       // }
-      return Object.assign({}, state)
+      return Object.assign({}, state);
+    }
     case GANK_EASY_CATEGORY_FAILURE:
       return {
         ...state
-      }
+      };
     default:
+      return state;
+  }
+}
+
+const gankEasyList = (state = getEasyListState, action) => {
+  switch(action.type) {
+    case GANK_EASY_LIST_SUCCESS:
+      return {
+        ...state
+      }
+    default: 
       return state
   }
 }
 
-const menu = (state = {
-  isOpen: false
-}, action) => {
+const gank = combineReducers({
+  gankIndex,
+  gankIndexCategory,
+  gankWelfare,
+  gankEasyCategory,
+  gankEasyList,
+});
+
+const menu = (
+  state = {
+    isOpen: false
+  },
+  action
+) => {
   if (action.type === MENU_CHANGE) {
     return {
       isOpen: action.isOpen
-    }
+    };
   } else {
-    return state
+    return state;
   }
-}
+};
 
 const reducer = combineReducers({
   gank,
   menu
-})
-
-export default reducer
+});
+export default reducer;

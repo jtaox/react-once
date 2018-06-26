@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getCategory, modifyCategory } from './../actions'
 
 const mapState2Props = (state, ownProps) => {
-  const { category: list } = state.gank
+  const { category: list } = state.gank.gankIndexCategory
   return {
     list
   }

@@ -7,8 +7,8 @@ import {
   GANK_EASY_CATEGORY_MODIFY,
   MENU_CHANGE,
   GANK_WELFARE_REQUEST, GANK_WELFARE_SUCCESS, GANK_WELFARE_FAILURE,
-  GANK_EASY_CATEGORY_REQUEST, GANK_EASY_CATEGORY_SUCCESS, GANK_EASY_CATEGORY_FAILURE
-  
+  GANK_EASY_CATEGORY_REQUEST, GANK_EASY_CATEGORY_SUCCESS, GANK_EASY_CATEGORY_FAILURE,
+  GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE
 } from './actionTypes'
 
 export const API = 'redux_api'
@@ -18,7 +18,7 @@ const pageCount = 20
 
 const gankIndexActionTypes = [ GANK_REQUEST, GANK_SUCCESS, GANK_FAILURE ]
 
-const buildGankIndexAction = ({ path: id }, page, modulesName, types) => {
+const buildGankIndexAction = ({ path: id, page }, types) => {
   // const url = `/gank/api/xiandu/data/id/${id}/count/${pageCount}/page/${page}`
   const url = `/gank/api/data/${id}/${pageCount}/${page}`
   return {
@@ -27,11 +27,10 @@ const buildGankIndexAction = ({ path: id }, page, modulesName, types) => {
     types,
     url,
     page,
-    modulesName
   }
 }
 
-const buildGankEasyAction = ({ path: cate }, page, modules, types) => {
+const buildGankEasyAction = ({ path: cate }, types) => {
   let url = `/gank/api/xiandu/categories`
   if (cate) url = `/gank/api/xiandu/category/${ cate }`
   return {
@@ -74,26 +73,26 @@ export const modifyGankEasyCateSelect = (sele) => {
   }
 }
 
-export const getGankListRequestAction = (modules, getModules, types, buildAction) => {
+export const getGankRequestAction = (getModules, types, buildAction) => {
   return (args) => (dispatch, getState) => {
-    const { path, useCache } = args
-    // modules为空时默认为id
-    // !(modules && modules.name) && (modules = { name: path })
-    const { name: modulesName } = modules
+    const { useCache } = args
     if (useCache) return
-    const data = getModules(getState, path)
-    const page = (data && data.page) || 1
-    return dispatch(buildAction(args, page, modulesName, types))
+    const data = (getModules && getModules(getState, args)) || {}
+    return dispatch(buildAction({ ...args, ...data}, types))
   }
 }
 
-export const getGankList = getGankListRequestAction({ name: 'index' }, (getState, id) => {
-  return getState().gank.index[id]
+export const getGankList = getGankRequestAction((getState, { path }) => {
+  const data = getState().gank.gankIndex.list[path]
+  const page = (data && data.page) || 1
+  return { page }
 }, gankIndexActionTypes, buildGankIndexAction)
 
 export const getGankWelfareList = (args) => {
-  return getGankListRequestAction({ name: 'welfare' }, (getstate, id) => {
-    return getstate().gank.welfare
+  return getGankRequestAction((getState, path) => {
+    const data = getState().gank.gankIndex.list[path]
+    const page = (data && data.page) || 1
+    return { page }
   }, [ 
     GANK_WELFARE_REQUEST, 
     GANK_WELFARE_SUCCESS, 
@@ -102,13 +101,20 @@ export const getGankWelfareList = (args) => {
 }
 
 export const getEasyCategory = (args) => {
-  return getGankListRequestAction({ name: 'easyCategory' }, (getState) => {
-    return getState().gank.easyCategory.main
-  }, [
+  return getGankRequestAction(null, [
     GANK_EASY_CATEGORY_REQUEST,
     GANK_EASY_CATEGORY_SUCCESS,
     GANK_EASY_CATEGORY_FAILURE
   ], buildGankEasyAction)({ ...args })
+}
+
+export const getGankEasyData = (id) => (dispatch, getState) => {
+  const url = `http://gank.io/api/xiandu/data/id/${id}/count/10/page/1`
+  dispatch({
+    request_type: API,
+    types: [GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE],
+    url
+  })
 }
 
 // menu
