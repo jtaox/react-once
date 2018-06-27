@@ -14,7 +14,7 @@ export default class List extends Component {
     }
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.onScroll.bind(this))
+    // window.addEventListener('scroll', this.onScroll.bind(this))
     // this.list.addEventListener('touchmove', this.touchmove.bind(this))
     this.list.addEventListener('touchstart', this.touchStart.bind(this))
     this.list.addEventListener('touchend', this.touchEnd.bind(this))
@@ -24,7 +24,6 @@ export default class List extends Component {
   }
   touchmove(e) {
     const totalHeight = document.documentElement.scrollTop || document.body.offsetTop
-    console.log(this.clientHeight, totalHeight, this.clientHeight + totalHeight < this.height - 30, this.state.pending)
     if (this.clientHeight + totalHeight < this.height - 30 || this.state.pending) return 
     this.setState({
       pending: true

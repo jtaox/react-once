@@ -45,3 +45,32 @@ export const getClient = () => {
       height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
   }
 }
+
+// 防抖
+export const debounce = (fun, wait, context) => {
+  let timer = null
+  let time = Date.now()
+  return (...args) => {
+    clearTimeout(timer)
+    time = Date.now()
+    timer = setTimeout(() => {
+      fun.apply(context, args)
+      console.log('执行' + wait, Date.now() - time)
+    }, wait);
+  }
+}
+
+// 节流
+export const throttle = (fun, context, interval = 300) => {
+  let canRun = true;
+  return () => {
+    console.log(canRun)
+      if (!canRun) return;
+      canRun = false;
+      setTimeout(() => {
+          fun.apply(context, arguments);
+          console.log('节流执行')
+          canRun = true;
+      }, interval);
+  }
+}

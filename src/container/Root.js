@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Route } from 'react-router-dom'
 import Gank from './../component/Gank'
 import Menu from './../container/Menu'
-// import ToolBar from './../container/ToolBar'
+import MenuToggle from './../container/MenuToggle'
 
 import store from './../store'
 
@@ -17,7 +17,7 @@ export default class Root extends Component {
         <div className='App'>
           <Menu />
           <div id='page-wrap'>
-            {/* <ToolBar></ToolBar> */}
+            <MenuToggle></MenuToggle>
             <Route path='/gk' component={ Gank } />
           </div>
         </div>

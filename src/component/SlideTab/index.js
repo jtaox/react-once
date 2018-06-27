@@ -39,7 +39,6 @@ export default class SlideTab extends Component {
   }
   tabChange = ({item, index}) => () => {
     this.props.tabChange && this.props.tabChange({item, index})
-    console.log(index, '[[[[[')
     this.setState({
       activeTab: index
     })

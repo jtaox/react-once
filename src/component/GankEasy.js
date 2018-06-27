@@ -70,6 +70,9 @@ class GankEasy extends Component {
 
     return (
       <div className={ style.gankEasy }>
+        {
+          (!subSelect || !easyList[subSelect]) && !easyList.isFetching && <div className={ style.gankEasyEmpty }><img src={ require('./../assets/images/empty.png') } alt='' /></div>
+        }
         <div className={ [style.gankEasyMenuIcon, style.gankEasyMenuIconAnim].join(' ') } onClick={ () => this.setState({ mainUlState: true }) }>
           <img src={ require('./../assets/images/category-icon.png') } alt='' />
         </div>
@@ -82,10 +85,14 @@ class GankEasy extends Component {
             { mainSelect && sub[mainSelect] && sub[mainSelect].list.map(item => <li className={ subSelect === item.id ? style.cateSelect : '' } onClick={ () => this.subCateClick(item) } key={ item._id }>{ item.title }</li>) }
           </ul>
         </div>
-        <div className='test'>
+        <div className={ style.gankEasyList }>
           { easyList.isFetching && <p>加载数据中...</p> }
           <ul>
-            { listData && listData.list.map(item => <li key={ item._id }>{ item.title }</li>) }
+            { listData && listData.list.map(item => {
+              return <li key={ item._id }>
+                <a href={ item.url }>{ item.title }</a>
+              </li>
+            }) }
           </ul>
         </div>
       </div>
