@@ -60,7 +60,7 @@ export default class GankWelfare extends Component {
   }
 
   onLoadMore() {
-    this.props.getGankWelfareList()
+    return this.props.getGankWelfareList()
   }
 
   render() {

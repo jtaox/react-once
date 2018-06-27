@@ -19,6 +19,7 @@ import {
   GANK_EASY_CATEGORY_REQUEST,
   GANK_EASY_CATEGORY_MODIFY,
   GANK_EASY_LIST_SUCCESS,
+  GANK_EASY_LIST_REQUEST,
 } from "./../../actions/actionTypes"
 
 const gankIndex = (state = gankIndexState, action) => {
@@ -82,7 +83,8 @@ const gankWelfare = (state = gankWelfareState, action) => {
       }
       return Object.assign({}, state, {
         isFetching: false,
-        list
+        list,
+        page: ++action.page
       });
     case GANK_WELFARE_FAILURE:
       return {
@@ -168,9 +170,27 @@ const gankEasyCategory = (state = getEasyCategoryState, action) => {
 
 const gankEasyList = (state = getEasyListState, action) => {
   switch(action.type) {
-    case GANK_EASY_LIST_SUCCESS:
+    case GANK_EASY_LIST_REQUEST: {
       return {
-        ...state
+        ...state,
+        isFetching: true
+      }
+    }
+    case GANK_EASY_LIST_SUCCESS:
+      const list = action.result.results
+      let data = state[action.id]
+      if (data) {
+        data.list = [...data.list, ...list]
+      } else {
+        data = {
+          list: [...list]
+        }
+      }
+      data.page = ++action.page
+      return {
+        ...state,
+        [action.id]: data,
+        isFetching: false
       }
     default: 
       return state

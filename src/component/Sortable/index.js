@@ -26,7 +26,7 @@ class SortableWrap extends Component {
  
   render() {
     return (
-      <div id="test" className={ style.sortable }>
+      <div className={ style.sortable }>
         { typeof this.props.children === 'object' ? React.cloneElement(this.props.children, { ref: (n) => this.dom = n }) : null }
       </div>
     )

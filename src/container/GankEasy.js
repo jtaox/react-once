@@ -6,8 +6,9 @@ const mapStateToProps = (state, ownProps) => {
   const { 
     main: mainCategory, 
     sub: subCategory } = state.gank.gankEasyCategory
+  const easyList = state.gank.gankEasyList
   return {
-    mainCategory, subCategory
+    mainCategory, subCategory, easyList
   }
 }
 const mapDispatchToProps = {

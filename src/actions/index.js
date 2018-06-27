@@ -89,8 +89,8 @@ export const getGankList = getGankRequestAction((getState, { path }) => {
 }, gankIndexActionTypes, buildGankIndexAction)
 
 export const getGankWelfareList = (args) => {
-  return getGankRequestAction((getState, path) => {
-    const data = getState().gank.gankIndex.list[path]
+  return getGankRequestAction((getState, { path }) => {
+    const data = getState().gank.gankWelfare
     const page = (data && data.page) || 1
     return { page }
   }, [ 
@@ -108,14 +108,30 @@ export const getEasyCategory = (args) => {
   ], buildGankEasyAction)({ ...args })
 }
 
-export const getGankEasyData = (id) => (dispatch, getState) => {
-  const url = `http://gank.io/api/xiandu/data/id/${id}/count/10/page/1`
-  dispatch({
+export const getGankEasyData = getGankRequestAction((getState, { path }) => {
+  const easyList = getState().gank.gankEasyList
+  const data = easyList[path]
+  const page = (data && data.page) || 1
+  return { page }
+}, [GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE], ({ path, page }, types) => {
+  const url = `/gank/api/xiandu/data/id/${ path }/count/${ pageCount }/page/${ page }`
+  return {
     request_type: API,
-    types: [GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE],
-    url
-  })
-}
+    types,
+    url,
+    page,
+    id: path
+  }
+})
+
+// export const getGankEasyData = (id) => (dispatch, getState) => {
+//   const url = `http://gank/api/xiandu/data/id/${id}/count/${pageCount}/page/1`
+//   dispatch({
+//     request_type: API,
+//     types: [GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE],
+//     url
+//   })
+// }
 
 // menu
 export const menuStatusChange = ({ isOpen }) => ({

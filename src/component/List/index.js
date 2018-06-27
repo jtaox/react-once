@@ -24,6 +24,7 @@ export default class List extends Component {
   }
   touchmove(e) {
     const totalHeight = document.documentElement.scrollTop || document.body.offsetTop
+    console.log(this.clientHeight, totalHeight, this.clientHeight + totalHeight < this.height - 30, this.state.pending)
     if (this.clientHeight + totalHeight < this.height - 30 || this.state.pending) return 
     this.setState({
       pending: true

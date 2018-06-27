@@ -37,7 +37,11 @@ class GankEasy extends Component {
     this.props.modifyCateSelect({
       sub: id
     })
-    this.props.getData(id)
+    this.props.getData({ path: id, useCache: this.props.easyList[id] })
+    this.setState({
+      subUlState: false,
+      mainUlState: false
+    })
   }
 
   subUlStyle() {
@@ -55,7 +59,15 @@ class GankEasy extends Component {
   }
 
   render() {
-    const { mainCategory: main, mainCategory: { defSelect: mainSelect }, subCategory: sub, subCategory: { defSelect: subSelect } } = this.props
+    const { 
+      mainCategory: main, 
+      mainCategory: { defSelect: mainSelect }, 
+      subCategory: sub, 
+      subCategory: { defSelect: subSelect }, 
+      easyList } = this.props
+
+    const listData = subSelect && easyList[subSelect]
+
     return (
       <div className={ style.gankEasy }>
         <div className={ [style.gankEasyMenuIcon, style.gankEasyMenuIconAnim].join(' ') } onClick={ () => this.setState({ mainUlState: true }) }>
@@ -68,6 +80,12 @@ class GankEasy extends Component {
           <ul className={ style.gankEasySubCateUl } style={ this.subUlStyle() }>
             { this.props.subCategory.isFetching && <span>加载中...</span> }
             { mainSelect && sub[mainSelect] && sub[mainSelect].list.map(item => <li className={ subSelect === item.id ? style.cateSelect : '' } onClick={ () => this.subCateClick(item) } key={ item._id }>{ item.title }</li>) }
+          </ul>
+        </div>
+        <div className='test'>
+          { easyList.isFetching && <p>加载数据中...</p> }
+          <ul>
+            { listData && listData.list.map(item => <li key={ item._id }>{ item.title }</li>) }
           </ul>
         </div>
       </div>
