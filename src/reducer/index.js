@@ -13,7 +13,7 @@ const menu = (
   if (action.type === MENU_CHANGE) {
     return {
       isOpen: action.isOpen
-    };
+    }
   } else {
     return state;
   }

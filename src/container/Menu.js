@@ -5,7 +5,8 @@ import { menuStatusChange } from './../actions'
 
 class MenuWrap extends Component {
   handleStateChange(state) {
-    this.props.menuStatusChange(state)
+    // 防止重复提交两次action
+    !state.isOpen && this.props.menuStatusChange(state)
   }
   render() {
     return (
@@ -13,6 +14,7 @@ class MenuWrap extends Component {
         pageWrapId={ "page-wrap" }
         onStateChange={ (state) => this.handleStateChange(state) }>
         <a id="home" className="menu-item" href="/">Gank.io</a>
+        <a id="v2ex" className="menu-item" href="/">V2EX</a>
       </Menu>
     );
   }
