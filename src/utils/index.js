@@ -64,7 +64,7 @@ export const debounce = (fun, wait, context) => {
 export const throttle = (fun, interval = 300) => {
   let canRun = true;
   return () => {
-      if (!canRun) return;
+    if (!canRun) return;
       canRun = false;
       setTimeout(() => {
           fun.apply(this, arguments);

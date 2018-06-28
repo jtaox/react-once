@@ -16,8 +16,8 @@ export default class List extends Component {
   }
   componentDidMount() {
     // window.addEventListener('scroll', this.onScroll.bind(this))
-    // this.throttleMove = throttle(this.touchmove, this, 200)
-    this.list.addEventListener('touchmove', this.touchmove.bind(this))
+    this.throttleMove = throttle(this.touchmove.bind(this), this, 200)
+    this.list.addEventListener('touchmove', this.throttleMove)
     this.list.addEventListener('touchstart', this.touchStart.bind(this))
     this.list.addEventListener('touchend', this.touchEnd.bind(this))
   }
