@@ -115,6 +115,13 @@
       "pathRewrite": {
         "^/gank": "/"
       }
+    },
+    "/v2ex": {
+      "target": "https://www.v2ex.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/v2ex": "/"
+      }
     }
   }
 }
