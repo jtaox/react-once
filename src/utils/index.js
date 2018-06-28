@@ -61,15 +61,13 @@ export const debounce = (fun, wait, context) => {
 }
 
 // 节流
-export const throttle = (fun, context, interval = 300) => {
+export const throttle = (fun, interval = 300) => {
   let canRun = true;
   return () => {
-    console.log(canRun)
       if (!canRun) return;
       canRun = false;
       setTimeout(() => {
-          fun.apply(context, arguments);
-          console.log('节流执行')
+          fun.apply(this, arguments);
           canRun = true;
       }, interval);
   }
