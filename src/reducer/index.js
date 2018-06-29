@@ -1,5 +1,8 @@
-import { combineReducers } from "redux"
+import {
+  combineReducers
+} from "redux"
 import gank from './gank'
+import v2ex from './v2ex'
 import {
   MENU_CHANGE,
 } from "./../actions/actionTypes"
@@ -21,6 +24,7 @@ const menu = (
 
 const reducer = combineReducers({
   gank,
+  v2ex,
   menu
 });
 export default reducer;

@@ -7,3 +7,7 @@ export const gankCategoryList = [
   { _id: 5, id: '拓展资源', title: '拓展资源', defChecked: false },
   { _id: 6, id: 'all', title: 'all', defChecked: false },
 ]
+
+export const v2exPostTabList = [
+  { id: 0, title: '最新', en_name: 'latest', fun: 'getLatest' }, 
+  { id: 1, title: '热门', en_name: 'hot', fun: 'getHot' }]

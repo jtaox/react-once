@@ -3,7 +3,7 @@ import GankIndex from './../../container/GankIndex'
 import GankWelfare from './../../container/GankWelfare'
 import GankEasy from './../../container/GankEasy'
 
-import V2exIndex from './../../component/V2exIndex'
+import V2exIndex from './../../container/V2exIndex'
 import V2exNodes from './../../component/V2exNodes'
 
 export const gankRoutes = [

@@ -30,3 +30,13 @@ export const getEasyCategoryState = {
 export const getEasyListState = {
   isFetching: false
 }
+
+export const v2exPostState = {
+  isFetching: false,
+  latest: [],
+  hot: []
+}
+
+export const v2exNodesState = {
+
+}

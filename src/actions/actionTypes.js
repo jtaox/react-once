@@ -26,3 +26,8 @@ export const GANK_EASY_CATEGORY_MODIFY = 'GANK_EASY_CATEGORY_MODIFY'
 
 // gank index menu
 export const MENU_CHANGE = 'MENU_CHANGE'
+
+// v2ex latest
+export const V2EX_POST_REQUEST = 'V2EX_POST_REQUEST'
+export const V2EX_POST_SUCESS = 'V2EX_POST_SUCESS'
+export const V2EX_POST_FAILURE = 'V2EX_POST_FAILURE'
