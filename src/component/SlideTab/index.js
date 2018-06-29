@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import style from './index.less'
-// import { otherSlidFlex, slidItemsFlex } from './../../style/values.less'
+import { slidItemsFlex } from './../../style/values.less'
 
 export default class SlideTab extends Component {
   // 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
@@ -15,22 +15,30 @@ export default class SlideTab extends Component {
     }, {
       id: 'iOS',
       title: 'iOS'
-    }]
+    }],
+    hasRightBtn: false
   }
   static propTypes = {
     list: PropTypes.array,
-    tabChange: PropTypes.func
+    tabChange: PropTypes.func,
+    hasRightBtn: PropTypes.bool
   }
   constructor(props) {
     super(props)
     this.state = {
       activeTab: 0,
-      slidTabWidth: 0
+      slidTabWidth: 0,
+      slidItemWidth: 0
+    }
+    this.slidTabItemsStyle = {
+      flex: this.props.hasRightBtn ? slidItemsFlex : 1
     }
   }
   componentDidMount() {
+    const width = this.slidTabItems.getBoundingClientRect().width
     this.setState({
-      slidTabWidth: this.slidTabItems.getBoundingClientRect().width
+      slidTabWidth: width,
+      slidItemWidth: width / ( this.props.hasRightBtn ? 3 : this.props.list.length )
     })
   }
   
@@ -43,20 +51,28 @@ export default class SlideTab extends Component {
       activeTab: index
     })
   }
+
+  getRightBtnView(list, otherClick) {
+    return this.props.hasRightBtn ? (
+      <i className={ `${style.otherSlid} ${ list.length > 3 ? style.otherSlidShadow : ''}` } onClick={ () => otherClick && otherClick() }>
+        <img alt='' src={ require('./../../assets/images/slid-other.png') }/>
+      </i>) : undefined
+  }
+
   render() {
-    const { list, otherClick } = this.props
+    const { list, otherClick, hasRightBtn } = this.props
     return (
       <div className={ style.slidTabWrap } onTouchMove={ e => e.stopPropagation() }>
         <div className={ style.slidTab }>
-          <div className={ style.slidTabItems } ref={ ref => this.slidTabItems = ref }>
-            <div className={ style.slidTabItemsWrap } style={{ width: this.state.slidTabWidth / 3 * list.length + 'px', display: 'flex' }}>
+          <div className={ style.slidTabItems } style={ this.slidTabItemsStyle } ref={ ref => this.slidTabItems = ref }>
+            <div className={ style.slidTabItemsWrap } style={{ width: hasRightBtn ? this.state.slidItemWidth * list.length + 'px' : '100%', display: 'flex' }}>
               { list.map((item, index) => {
-                return <div onClick={ this.tabChange({item, index}) } style={{ width: this.state.slidTabWidth / 3 + 'px' }} className= {[index === this.state.activeTab ? style.active : '', style.slidItem ].join(' ')} key={ item.id }>{ item.title }</div>
+                return <div onClick={ this.tabChange({item, index}) } style={{ width: hasRightBtn ? this.state.slidItemWidth + 'px' : 'auto', flex: hasRightBtn ? undefined : 1 }} className= {[index === this.state.activeTab ? style.active : '', style.slidItem ].join(' ')} key={ item.id }>{ item.title }</div>
               }) }  
-              <div className={ style.tabLine } style={{ width: this.state.slidTabWidth / 3 + 'px', transform: `translateX(${ this.state.slidTabWidth / 3 * this.state.activeTab }px)` }}></div> 
+              <div className={ style.tabLine } style={{ width: hasRightBtn ? this.state.slidItemWidth + 'px' : this.state.slidTabWidth / list.length + 'px', transform: `translateX(${  this.state.slidItemWidth * this.state.activeTab }px)` }}></div> 
             </div>  
-          </div>       
-          <i className={ `${style.otherSlid} ${ list.length > 3 ? style.otherSlidShadow : ''}` } onClick={ () => otherClick && otherClick() }><img alt='' src={ require('./../../assets/images/slid-other.png') }/></i>
+          </div>
+          { this.getRightBtnView(list, otherClick) }
         </div>
       </div>
     )
