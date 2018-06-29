@@ -187,7 +187,7 @@ module.exports = {
                       flexbox: 'no-2009',
                     }),
                     values
-                  ],
+                  ]
                 },
               },
             ],
@@ -202,10 +202,11 @@ module.exports = {
                   importLoaders: 1,
                   modules: true,
                   localIdentName: '[name]_[local]_[hash:base64:5]',
+                  sourceMap: true
                 },
               },
               {
-                loader: require.resolve('less-loader')
+                loader: require.resolve('less-loader'),
               }
             ]
           },
