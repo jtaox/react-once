@@ -23,7 +23,9 @@ class TabBar extends Component {
       <div className={ style.tabBar }>
         <ul>
           { this.props.router.map(item => <li key={ item._id }>
-            <NavLink to={ item.link } activeClassName="active-page">{ item.title }</NavLink>
+            <NavLink to={ item.link } activeClassName="active-page">
+            { item.icon ? <img src={ item.icon } alt='' /> : item.title }
+            </NavLink>
           </li>) }
         </ul>
       </div>

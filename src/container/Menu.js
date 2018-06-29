@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import { connect } from 'react-redux'
 import { menuStatusChange } from './../actions'
+import style from './../style/global.less'
 
 class MenuWrap extends Component {
   handleStateChange(state) {
@@ -10,11 +11,11 @@ class MenuWrap extends Component {
   }
   render() {
     return (
-      <Menu isOpen={ this.props.isOpen }
+      <Menu className={ style.menu } isOpen={ this.props.isOpen }
         pageWrapId={ "page-wrap" }
         onStateChange={ (state) => this.handleStateChange(state) }>
-        <a id="home" className="menu-item" href="/">Gank.io</a>
-        <a id="v2ex" className="menu-item" href="/">V2EX</a>
+        <a id="home" className="menu-item" href="/gk/index">Gank.io</a>
+        <a id="v2ex" className="menu-item" href="/v2ex/index">V2EX</a>
       </Menu>
     );
   }
