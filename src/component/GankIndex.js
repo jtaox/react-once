@@ -60,7 +60,7 @@ class GankIndex extends Component {
     return (
       <List style={{ height: '100%' }} onLoadMore={ () => this.onLoadMore() }>
         <div id='gank-index'>
-          <SlideTab ref={ ref => this.slideTab = ref } list={ this.props.category.filter( item => item.defChecked ) } tabChange={ (args) => this.tabChange(args) } otherClick={ () => this.props.history.push('/gk/setting') } />
+          <SlideTab ref={ ref => this.slideTab = ref } hasRightBtn list={ this.props.category.filter( item => item.defChecked ) } tabChange={ (args) => this.tabChange(args) } otherClick={ () => this.props.history.push('/gk/setting') } />
           { isFetching && <p style={{ textAlign: 'center', margin: '20px 0' }}>正在加载数据...</p> }
           <div className='gank-content'>
             <ul>
