@@ -35,15 +35,12 @@ export default class SlideTab extends Component {
     }
   }
   componentDidMount() {
-    // TODO: 
-    // setTimeout(() => {
-      const clientWidth = document.body.clientWidth
-      const width = this.props.hasRightBtn ? clientWidth * slidItemsFlex : clientWidth
-      this.setState({
-        slidTabWidth: width,
-        slidItemWidth: width / ( this.props.hasRightBtn ? 3 : this.props.list.length )
-      })  
-    // }, 0);
+    const clientWidth = document.body.clientWidth
+    const width = this.props.hasRightBtn ? clientWidth * slidItemsFlex : clientWidth
+    this.setState({
+      slidTabWidth: width,
+      slidItemWidth: width / ( this.props.hasRightBtn ? 3 : this.props.list.length )
+    })  
   }
 
   componentWillReceiveProps(nextProps) {
