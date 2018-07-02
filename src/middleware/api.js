@@ -1,4 +1,4 @@
-import { API, GENERAL_API } from './../actions'
+import { API } from './../actions/config'
 import http from './../utils/http'
 
 const api = (dispatch, getState) => next => action => {
