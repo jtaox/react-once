@@ -51,7 +51,7 @@ export default class List extends Component {
     if (this.state.pending)
       return (
         <div className='refresh-list-footer'>
-          <p>加载新数据</p>
+          <p style={{ textAlign: 'center', paddingBottom: '20px' }}>加载新数据</p>
         </div>
       )
   }
