@@ -15,7 +15,7 @@ export default class V2ex extends Component {
       {
         _id: 1,
         icon: require('./../assets/images/v-nodes.png'),
-        link: '/v2ex/nodes'
+        link: '/v2ex/node'
       }
     ]
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, Route } from 'react-router-dom'
+import { NavLink, Route, Redirect } from 'react-router-dom'
 import style from './../style/v2ex.less'
 import V2exPosts from './../container/V2exPosts'
 import { classnames } from './../utils'
@@ -14,7 +14,6 @@ import { classnames } from './../utils'
   }
 
   componentDidMount() {
-    // this.props.getAllNodes()
   }
 
   allNodeToggle = () => {
@@ -44,6 +43,8 @@ import { classnames } from './../utils'
             }) } src={ require('./../assets/images/v2-more-node.png') } alt='' />
           </div>
         </div>
+        { /* 这里是一个默认重定向 */ }
+        <Route exact path='/v2ex/node/' component={ () => <Redirect to='/v2ex/node/qna' /> }></Route>
         <Route path='/v2ex/node/:id' component={ V2exPosts } ></Route>
       </div>
     )

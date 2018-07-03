@@ -44,8 +44,6 @@ export const v2exNodesState = {
   },
   common: {
     list: [
-      { title: '全部', name: 'all' },
-      { title: '最热', name: 'hot' },
       { title: '问与答', name: 'qna' },
       { title: '酷工作', name: 'jobs' },
       { title: '技术', name: 'tech' },

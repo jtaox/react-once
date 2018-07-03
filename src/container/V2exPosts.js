@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import V2exPosts from './../component/V2exPosts'
-import { getV2exNodePost as getPosts } from './../actions'
+import { getV2exNodePost as getPosts, getV2exLatest as getLatest, getV2exHot as getHot } from './../actions'
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = (state) => {
+  const posts = state.v2ex.post
+  return { posts }
 }
 
 const mapDispatchToProps = {
-  getPosts
+  getPosts, getLatest, getHot
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(V2exPosts)

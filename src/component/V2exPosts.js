@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import style from './../style/v2ex.less'
 
 class V2exPosts extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      noteName: ''
+      nodeName: ''
     }
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
+    this.getNodeData(this.props.match.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -19,13 +20,14 @@ class V2exPosts extends Component {
   }
  
   shouldComponentUpdate(nextProps, nextState) {
-    return !this.compareProps(nextProps, this.props, 'match.params.id')
+    if (!this.state.nodeName) return true
+    return !this.compareProps(nextProps, this.props, 'match.params.id') || 
+      !this.compareProps(nextProps, this.props, `posts.${ this.state.nodeName }`)
   }
 
   // 获取指定节点下的数据
   getNodeData(id) {
-    this.setState({ noteName: id })
-    console.log(id)
+    this.setState({ nodeName: id })
     this.props.getPosts(id)
   }
 
@@ -43,8 +45,9 @@ class V2exPosts extends Component {
   }
 
   render() {
+    const posts = this.props.posts[this.state.nodeName]
     return (
-      <div><span>{ this.state.noteName }</span></div>
+      <div className={ style.v2exPosts }>{ posts && posts.map(item => <div className={ style.v2exPostsItem } key={ item.id }>{ item.title }</div>) }</div>
     )
   }
 }
