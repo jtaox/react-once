@@ -38,5 +38,17 @@ export const v2exPostState = {
 }
 
 export const v2exNodesState = {
-
+  all: {
+    isFetching: false,
+    list: []
+  },
+  common: {
+    list: [
+      { title: '全部', name: 'all' },
+      { title: '最热', name: 'hot' },
+      { title: '问与答', name: 'qna' },
+      { title: '酷工作', name: 'jobs' },
+      { title: '技术', name: 'tech' },
+    ]
+  }
 }

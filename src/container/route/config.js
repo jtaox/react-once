@@ -1,10 +1,10 @@
-import GankSetting from './../../container/GankSetting'
-import GankIndex from './../../container/GankIndex'
-import GankWelfare from './../../container/GankWelfare'
-import GankEasy from './../../container/GankEasy'
+import GankSetting from './../GankSetting'
+import GankIndex from './../GankIndex'
+import GankWelfare from './../GankWelfare'
+import GankEasy from './../GankEasy'
 
-import V2exIndex from './../../container/V2exIndex'
-import V2exNodes from './../../component/V2exNodes'
+import V2exIndex from './../V2exIndex'
+import V2exNode from './../V2exNode'
 
 export const gankRoutes = [
   {
@@ -31,7 +31,7 @@ export const v2exRoutes = [
     component: V2exIndex
   },
   {
-    path: '/v2ex/nodes',
-    component: V2exNodes
+    path: '/v2ex/node',
+    component: V2exNode
   }
 ]
