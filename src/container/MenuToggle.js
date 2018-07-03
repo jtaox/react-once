@@ -20,14 +20,6 @@ class MenuToggle extends Component {
       this.throttleScroll()
     })
   }
-
-  componentDidMount() {
-    console.log('componentDidMount menuToggle')
-  }
-
-  componentWillMount() {
-    console.log('componentWillMount menuToggle')
-  }
   scroll() {
     this.setState({
       menuLeft: toggleMenuLeftOffset
