@@ -23,6 +23,11 @@ import { classnames } from './../utils'
     this.props.getAllNodes()
   }
   
+  allNodeClick = (e) => {
+    const name = e.target.getAttribute('node_name')
+    console.log(this.props.history.push(`/v2ex/node/${name}`))
+  }
+
   render() {
     const { commonNodes, allNodes } = this.props
     const { allNodeContainerState } = this.state
@@ -34,8 +39,8 @@ import { classnames } from './../utils'
           </div>
           <div style={{ height: allNodeContainerState ? '200px' : '0px' }} className={ style.v2exAllNodes }>
             { allNodes.isFetching && <p>加载中...</p>}
-            <ul>
-              { allNodes.list.map((item) => <li key={ item.id }>{ item.title }</li>) }
+            <ul onClick={ this.allNodeClick }>
+              { allNodes.list.map((item) => <li node_name={ item.name } key={ item.id }>{ item.title }</li>) }
             </ul>
             <img onClick={ this.allNodeToggle } className={ classnames({
               [style.v2exAllNodesIcon]: true,
