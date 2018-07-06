@@ -53,7 +53,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   openMenu: () => {
-    console.log('click')
     return menuStatusChange({ isOpen: true })
   }
 }
