@@ -29,7 +29,7 @@ class V2exIndex extends Component {
       { isFetching && <p>加载数据中...</p> }
       <div>
         { active && list[active] && list[active].map(item => {
-          return <p key={ item.id }>{ item.title }</p>
+          return <p style={{ margin: '10px 8px' }} key={ item.id }>{ item.title }</p>
         }) }
       </div>
     </div>)
