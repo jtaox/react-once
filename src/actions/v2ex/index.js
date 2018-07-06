@@ -2,6 +2,8 @@ import {
   V2EX_POST_REQUEST, V2EX_POST_SUCESS, V2EX_POST_FAILURE, V2EX_ALL_NODE_REQUEST, V2EX_ALL_NODE_SUCCESS, V2EX_ALL_NODE_FAILURE
 } from './../actionTypes'
 
+import { v2exTopics, v2exPosts, v2exAllNode } from './../api'
+
 import { API } from './../config'
 
 const getV2exPosts = (urlFun) => (type, fromIndex) => {
@@ -20,9 +22,9 @@ const getV2exPosts = (urlFun) => (type, fromIndex) => {
   else return reduxFun
 }  
 
-export const getV2exPostList = getV2exPosts((type) => `/v2ex/api/topics/${ type }.json`)
+export const getV2exPostList = getV2exPosts((type) => v2exTopics(type))
 
-export const getV2exNodePost = getV2exPosts((nodeName) => `/v2ex/api/topics/show.json?node_name=${ nodeName }`)
+export const getV2exNodePost = getV2exPosts((nodeName) => v2exPosts(nodeName))
 
 // 获取最新
 export const getV2exLatest = getV2exPostList('latest', true)
@@ -36,7 +38,7 @@ export const getAllNodes = () => (dispatch, getState) => {
   return dispatch({
     request_type: API,
     types: [V2EX_ALL_NODE_REQUEST, V2EX_ALL_NODE_SUCCESS, V2EX_ALL_NODE_FAILURE],
-    url: `/v2ex/api/nodes/all.json`
+    url: v2exAllNode
   })
 }
 

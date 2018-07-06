@@ -10,13 +10,15 @@ import {
 import { gankCategoryCache } from './../../utils'
 import { gankCategoryList } from './../../utils/config'
 
-import { API, pageCount } from './../config'
+import { API } from './../config'
+
+import { gankEasyList, gankEasycategories, gankBaseList } from './../api'
 
 const gankIndexActionTypes = [ GANK_REQUEST, GANK_SUCCESS, GANK_FAILURE ]
 
 const buildGankIndexAction = ({ path: id, page }, types) => {
   // const url = `/gank/api/xiandu/data/id/${id}/count/${pageCount}/page/${page}`
-  const url = `/gank/api/data/${id}/${pageCount}/${page}`
+  const url = gankBaseList(id, page)
   return {
     request_type: API,
     id,
@@ -27,8 +29,7 @@ const buildGankIndexAction = ({ path: id, page }, types) => {
 }
 
 const buildGankEasyAction = ({ path: cate }, types) => {
-  let url = `/gank/api/xiandu/categories`
-  if (cate) url = `/gank/api/xiandu/category/${ cate }`
+  let url = gankEasycategories(cate)
   return {
     request_type: API,
     url,
@@ -110,7 +111,7 @@ export const getGankEasyData = getGankRequestAction((getState, { path }) => {
   const page = (data && data.page) || 1
   return { page }
 }, [GANK_EASY_LIST_REQUEST, GANK_EASY_LIST_SUCCESS, GANK_EASY_LIST_FAILURE], ({ path, page }, types) => {
-  const url = `/gank/api/xiandu/data/id/${ path }/count/${ pageCount }/page/${ page }`
+  const url = gankEasyList(path, page)
   return {
     request_type: API,
     types,
