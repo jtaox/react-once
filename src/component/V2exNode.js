@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, Route, Redirect } from 'react-router-dom'
+import { NavLink, Route, Redirect, Prompt } from 'react-router-dom'
 import style from './../style/v2ex.less'
 import V2exPosts from './../container/V2exPosts'
 import { classnames } from './../utils'
@@ -37,6 +37,8 @@ import { classnames } from './../utils'
     const { allNodeContainerState } = this.state
     return (
       <div className={ style.v2exNodes }>
+      {/* <Prompt message={(params) => 
+              params.pathname === '/v2ex/node/jobs' ? "Move away?" : true } /> */}
         <div className={ style.v2exNodesContainer }>
           <div className={ style.v2exCommonNodes }>
             { commonNodes && commonNodes.list.map(n => <NavLink onClick={ () => this.preTarget && this.preTarget.classList.remove(style.active) } activeClassName={ style.active } replace={ true } to={ `/v2ex/node/${ n.name }` } key={ n.name }>{ n.title }</NavLink>) }

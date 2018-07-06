@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Prompt, BrowserRouter, withRouter } from 'react-router-dom'
 import Gank from './../component/Gank'
 import V2ex from './../component/V2ex'
 import Menu from './../container/Menu'
@@ -11,7 +10,16 @@ import store from './../store'
 
 const s = store()
 
-export default class Root extends Component {
+class Root extends Component {
+
+
+  getUserConfirmation = async (message, callback) => {
+    // 测试 await
+    const result = await fetch('www.baidu.com')
+    callback(false)
+    this.props.history.push('/v2ex/node/qna')
+  }
+
   render() {
     return (
       <Provider store={ s }>
@@ -21,7 +29,10 @@ export default class Root extends Component {
             <MenuToggle></MenuToggle>
             <Switch>
               <Route path='/gk' component={ Gank } />
-              <Route path='/v2ex' component={ V2ex } />
+              {/* <Route  getUserConfirmation={ this.getUserConfirmation } path='/v2ex' component={ V2ex } /> */}
+              <BrowserRouter getUserConfirmation={ this.getUserConfirmation } path='/v2ex'>
+                <V2ex/>
+              </BrowserRouter>
               <Route component={ ({ location  }) => {
                 return <p style={{ textAlign: 'center', margin: '150px 0' }}>{ '404--' + location.pathname }</p>
               }} />
@@ -32,3 +43,5 @@ export default class Root extends Component {
     )
   }
 }
+
+export default withRouter(Root)
