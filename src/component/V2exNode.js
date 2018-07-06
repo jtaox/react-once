@@ -24,8 +24,12 @@ import { classnames } from './../utils'
   }
   
   allNodeClick = (e) => {
-    const name = e.target.getAttribute('node_name')
+    this.preTarget && this.preTarget.classList.remove(style.active)
+    const target = e.target
+    const name = target.getAttribute('node_name')
     name && this.props.history.push(`/v2ex/node/${name}`)
+    target.classList.add(style.active)
+    this.preTarget = target
   }
 
   render() {
