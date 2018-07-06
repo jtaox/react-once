@@ -39,7 +39,7 @@ import { classnames } from './../utils'
       <div className={ style.v2exNodes }>
         <div className={ style.v2exNodesContainer }>
           <div className={ style.v2exCommonNodes }>
-            { commonNodes && commonNodes.list.map(n => <NavLink activeClassName={ style.active } replace={ true } to={ `/v2ex/node/${ n.name }` } key={ n.name }>{ n.title }</NavLink>) }
+            { commonNodes && commonNodes.list.map(n => <NavLink onClick={ () => this.preTarget && this.preTarget.classList.remove(style.active) } activeClassName={ style.active } replace={ true } to={ `/v2ex/node/${ n.name }` } key={ n.name }>{ n.title }</NavLink>) }
           </div>
           <div style={{ height: allNodeContainerState ? '200px' : '0px' }} className={ style.v2exAllNodes }>
             { allNodes.isFetching && <p>加载中...</p>}
