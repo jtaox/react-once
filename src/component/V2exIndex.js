@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SlideTab from './SlideTab'
 import { v2exPostTabList } from './../utils/config'
+import style from './../style/v2ex.less'
 
 class V2exIndex extends Component {
 
@@ -25,7 +26,7 @@ class V2exIndex extends Component {
     const { isFetching, list } = this.props
     const { active } = this.state
     return (<div>
-      <SlideTab ref={ ref => this.slideTab = ref } tabChange={ this.tabChange } list={ v2exPostTabList } />
+      <SlideTab tabClass={ style.v2exTab } ref={ ref => this.slideTab = ref } tabChange={ this.tabChange } list={ v2exPostTabList } />
       { isFetching && <p>加载数据中...</p> }
       <div>
         { active && list[active] && list[active].map(item => {
