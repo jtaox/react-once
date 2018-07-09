@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { NavLink, Route, Redirect, Prompt } from 'react-router-dom'
+import { NavLink, Route, Redirect, Switch } from 'react-router-dom'
 import style from './../style/v2ex.less'
 import V2exPosts from './../container/V2exPosts'
+import V2exPost from './../component/V2exPost'
 import { classnames } from './../utils'
 
  class V2exNode extends Component {
@@ -55,8 +56,11 @@ import { classnames } from './../utils'
           </div>
         </div>
         { /* 这里是一个默认重定向 */ }
-        <Route exact path='/v2ex/node/' component={ () => <Redirect to='/v2ex/node/qna' /> }></Route>
-        <Route path='/v2ex/node/:id' component={ V2exPosts } ></Route>
+        <Switch>
+          <Route exact path='/v2ex/node/' component={ () => <Redirect to='/v2ex/node/qna' /> }></Route>
+          <Route  path='/v2ex/node/post' component={ V2exPost } ></Route>
+          <Route  path='/v2ex/node/:id' component={ V2exPosts } ></Route>
+        </Switch>
       </div>
     )
   }
