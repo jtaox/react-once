@@ -58,8 +58,8 @@ import { classnames } from './../utils'
         { /* 这里是一个默认重定向 */ }
         <Switch>
           <Route exact path='/v2ex/node/' component={ () => <Redirect to='/v2ex/node/qna' /> }></Route>
-          <Route  path='/v2ex/node/post' component={ V2exPost } ></Route>
-          <Route  path='/v2ex/node/:id' component={ V2exPosts } ></Route>
+          <Route path='/v2ex/node/:id/post/:id' component={ V2exPost } />
+          <Route path='/v2ex/node/:id' component={ V2exPosts } ></Route>
         </Switch>
       </div>
     )

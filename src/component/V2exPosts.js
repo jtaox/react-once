@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import style from './../style/v2ex.less'
+import { Link } from 'react-router-dom'
 
 class V2exPosts extends Component {
 
@@ -46,8 +47,9 @@ class V2exPosts extends Component {
 
   render() {
     const posts = this.props.posts[this.state.nodeName]
+    const id = this.props.match.params.id
     return (
-      <div className={ style.v2exPosts }>{ posts && posts.map(item => <div className={ style.v2exPostsItem } key={ item.id }>{ item.title }</div>) }</div>
+      <div className={ style.v2exPosts }>{ posts && posts.map(item => <Link to={ `/v2ex/node/${id}/post/${item.id}` } className={ style.v2exPostsItem } key={ item.id }>{ item.title }</Link>) }</div>
     )
   }
 }

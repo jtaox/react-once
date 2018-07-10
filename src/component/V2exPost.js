@@ -4,7 +4,7 @@ class V2exPost extends Component {
 
   render() {
     return (
-      <div>V2exPost</div>
+      <div>{ console.log(this.props.match.params.id) }</div>
     )
   }
 }
