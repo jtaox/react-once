@@ -1,8 +1,10 @@
 import { 
-  V2EX_POST_REQUEST, V2EX_POST_SUCESS, V2EX_POST_FAILURE, V2EX_ALL_NODE_REQUEST, V2EX_ALL_NODE_SUCCESS, V2EX_ALL_NODE_FAILURE
+  V2EX_POST_REQUEST, V2EX_POST_SUCESS, V2EX_POST_FAILURE, 
+  V2EX_ALL_NODE_REQUEST, V2EX_ALL_NODE_SUCCESS, V2EX_ALL_NODE_FAILURE,
+  V2EX_POST_INFO_REQUEST, V2EX_POST_INFO_SUCCESS, V2EX_POST_INFO_FAILURE
 } from './../actionTypes'
 
-import { v2exTopics, v2exPosts, v2exAllNode } from './../api'
+import { v2exTopics, v2exPosts, v2exAllNode, v2exPostInfo } from './../api'
 
 import { API } from './../config'
 
@@ -39,6 +41,15 @@ export const getAllNodes = () => (dispatch, getState) => {
     request_type: API,
     types: [V2EX_ALL_NODE_REQUEST, V2EX_ALL_NODE_SUCCESS, V2EX_ALL_NODE_FAILURE],
     url: v2exAllNode
+  })
+}
+
+// 获取主题信息
+export const getPostInfo = (id) => (dispatch) => {
+  return dispatch({
+    request_type: API,
+    types: [V2EX_POST_INFO_REQUEST, V2EX_POST_INFO_SUCCESS, V2EX_POST_INFO_FAILURE],
+    url: v2exPostInfo(id)
   })
 }
 

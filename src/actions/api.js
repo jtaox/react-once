@@ -9,6 +9,9 @@ export const v2exPosts = nodeName => `/v2ex/api/topics/show.json?node_name=${ no
 // 全部节点
 export const v2exAllNode = `/v2ex/api/nodes/all.json`
 
+// 主题信息
+export const v2exPostInfo = (id) => `/v2ex/api/topics/show.json?id=${id}`
+
 // 闲读列表
 export const gankEasyList = (path, page) => `/gank/api/xiandu/data/id/${ path }/count/${ pageCount }/page/${ page }`
 
