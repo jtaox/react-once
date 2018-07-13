@@ -18,6 +18,35 @@
 
 ## 小记
 
+### rn中StyleSheet.create方法作用
+
+rn中的view样式一般是通过`StyleSheet.create`方法创建，比如：
+
+```
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
+```
+
+其实可以直接写成字面量的方式，比如：
+
+```
+<View style={{ flex: 1 }}></View>
+```
+
+两者区别：
+
+代码质量:
+
+- 将样式从render函数中分离，使代码更容易理解
+- 给样式命名是一个很好的方法，可以为render函数中的低级组件增加意义
+
+性能：
+- 通过StyleSheet对象创建的样式表可以通过ID引用，而不是每次都创建一个新的样式对象
+- 它允许通过bridge发送一次样式，后续使用都引用这一个ID(尚未实现)
+
 ### react-router 在history模式下是如何监听
 
 ### react-router 中component和render的区别
