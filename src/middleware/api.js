@@ -3,18 +3,18 @@ import http from './../utils/http'
 
 const api = (dispatch, getState) => next => action => {
   if (!action || !action.request_type) return next(action)
-
+  
   const type = action.request_type
   let REQUEST, SUCCESS, FAILURE
   if (type === API) {
-    [ REQUEST, SUCCESS, FAILURE ] = action['types']
-    next({
+    [ REQUEST, SUCCESS, FAILURE ] = action['types'] || []
+    REQUEST && next({
       type: REQUEST
     })
   }
   return http.get(action.url).then(result => {
     if (type === API) {
-      next({
+      SUCCESS && next({
         ...action,
         type: SUCCESS,
         result,
@@ -23,7 +23,7 @@ const api = (dispatch, getState) => next => action => {
     return result
   }, err => {
     if (type === API) {
-      next({
+      FAILURE && next({
         ...action,
         type: FAILURE,
         msg: err
