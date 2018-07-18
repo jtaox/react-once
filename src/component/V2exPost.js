@@ -2,12 +2,26 @@ import React, { Component } from 'react'
 import style from './../style/v2ex.less'
 
 class V2exPost extends Component {
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      replies: []
+    }
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
     // this.state
     this.props.getPostInfo(id)
-    this.props.getReplies(id)
+    this.getReplies(id)
+  }
+
+  async getReplies(id) {
+    const result = await this.props.getReplies(id)
+    this.setState({
+      replies: result
+    })
   }
 
   formatDate(timestamp) {
@@ -32,6 +46,9 @@ class V2exPost extends Component {
           <span>By { info.member && info.member.username } at { this.formatDate(info.created) }前</span>
         </div>
         <div className={ style.content } dangerouslySetInnerHTML ={{ __html: info.content_rendered }}></div>
+        <div className={ style.replies }>
+          { this.state.replies.map(item => <p key={ item.id } dangerouslySetInnerHTML = {{ __html: item.content_rendered }}></p>) }
+        </div>
       </div>
     )
   }
