@@ -4,7 +4,7 @@ import {
   V2EX_POST_INFO_REQUEST, V2EX_POST_INFO_SUCCESS, V2EX_POST_INFO_FAILURE
 } from './../actionTypes'
 
-import { v2exTopics, v2exPosts, v2exAllNode, v2exPostInfo } from './../api'
+import { v2exTopics, v2exPosts, v2exAllNode, v2exPostInfo, v2exPostReplies } from './../api'
 
 import { API } from './../config'
 
@@ -50,6 +50,13 @@ export const getPostInfo = (id) => (dispatch) => {
     request_type: API,
     types: [V2EX_POST_INFO_REQUEST, V2EX_POST_INFO_SUCCESS, V2EX_POST_INFO_FAILURE],
     url: v2exPostInfo(id)
+  })
+}
+
+export const getPostReplies = (id) => (dispatch) => {
+  return dispatch({
+    request_type: API,
+    url: v2exPostReplies(id, 1)
   })
 }
 

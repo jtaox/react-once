@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import V2exPost from './../component/V2exPost'
-import { getPostInfo } from './../actions'
+import { getPostInfo, getPostReplies as getReplies } from './../actions'
 
 const mapStateToProps = (state) => {
   const { isFetching, info } = state.v2ex.post
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getPostInfo
+  getPostInfo, getReplies
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(V2exPost)

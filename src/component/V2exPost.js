@@ -4,8 +4,10 @@ import style from './../style/v2ex.less'
 class V2exPost extends Component {
 
   componentDidMount() {
+    const id = this.props.match.params.id
     // this.state
-    this.props.getPostInfo(this.props.match.params.id)
+    this.props.getPostInfo(id)
+    this.props.getReplies(id)
   }
 
   formatDate(timestamp) {
