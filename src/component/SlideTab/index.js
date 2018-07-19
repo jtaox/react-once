@@ -61,7 +61,7 @@ export default class SlideTab extends Component {
   }
 
   render() {
-    const { list, otherClick, hasRightBtn, tabClass } = this.props
+    const { list, otherClick, hasRightBtn, tabClass, tabLineClass } = this.props
     return (
       <div className={ style.slidTabWrap } onTouchMove={ e => e.stopPropagation() }>
         <div className={ `${style.slidTab} ${ tabClass ? tabClass : '' }` }>
@@ -70,7 +70,7 @@ export default class SlideTab extends Component {
               { list.map((item, index) => {
                 return <div onClick={ this.tabChange({item, index}) } style={{ width: hasRightBtn ? this.state.slidItemWidth + 'px' : 'auto', flex: hasRightBtn ? undefined : 1 }} className= {[index === this.state.activeTab ? style.active : '', style.slidItem ].join(' ')} key={ item.id }>{ item.title }</div>
               }) }  
-              <div className={ style.tabLine } style={{ width: hasRightBtn ? this.state.slidItemWidth + 'px' : this.state.slidTabWidth / list.length + 'px', transform: `translateX(${  this.state.slidItemWidth * this.state.activeTab }px)` }}></div> 
+              <div className={ `${ style.tabLine } ${ tabLineClass ? tabLineClass : '' }` } style={{ width: hasRightBtn ? this.state.slidItemWidth + 'px' : this.state.slidTabWidth / list.length + 'px', transform: `translateX(${  this.state.slidItemWidth * this.state.activeTab }px)` }}></div> 
             </div>  
           </div>
           { this.getRightBtnView(list, otherClick) }
