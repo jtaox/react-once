@@ -18,6 +18,17 @@
 
 ## 小记
 
+### react中的async/await生命周期函数
+
+async/await可以简化异步操作的代码，用同步的形式表示异步的过程，async函数被调用之后返回的是一个Promise对象。react中，有些生命周期返回Promise对象无所谓，比如componentDidMount，因为react并不关心它的返回值，react要做的只是去调用各个生命周期函数。但有些生命周期函数就不能这么随便了，比如render，react预期render返回一个组件的结构或者null或者undefined，如果返回的不是它期望的类型则会抛出错误。类似的还有shouldComponentUpdate期望返回boolean类型，不管Promise.resolve还是Promise.reject，强制类型转换后都是true。
+
+推荐使用async的生命周期函数要满足以下两点：
+
+1. render函数之后执行
+2. react不关心这个生命函数的返回值
+
+所以componentDidUpdate和componentDidMount是可以放心使用async的。
+
 ### react中的setState同步更新策略
 
 react中的setState为异步操作函数，方法执行是不会阻塞等待状态更新完毕，意味这不能以顺序控制的方式设置某些事件，也不能依赖this.state来计算未来状态，如果想保证状态同步更新，可以通过下面两种方式：
