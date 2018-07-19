@@ -61,10 +61,10 @@ export default class SlideTab extends Component {
   }
 
   render() {
-    const { list, otherClick, hasRightBtn, tabClass, tabLineClass } = this.props
+    const { list, otherClick, hasRightBtn, tabClass, tabLineClass, style: customStyle } = this.props
     return (
-      <div className={ style.slidTabWrap } onTouchMove={ e => e.stopPropagation() }>
-        <div className={ `${style.slidTab} ${ tabClass ? tabClass : '' }` }>
+      <div className={ style.slidTabWrap } ref={ ref => this.slidWrap = ref } onTouchMove={ e => e.stopPropagation() }>
+        <div style={ customStyle } className={ `${style.slidTab} ${ tabClass ? tabClass : '' }` }>
           <div className={ style.slidTabItems } style={ this.slidTabItemsStyle } ref={ ref => this.slidTabItems = ref }>
             <div className={ style.slidTabItemsWrap } style={{ width: hasRightBtn ? this.state.slidItemWidth * list.length + 'px' : '100%', display: 'flex' }}>
               { list.map((item, index) => {
