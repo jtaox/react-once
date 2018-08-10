@@ -1,6 +1,6 @@
-import GankEasy from './../component/GankEasy'
+import GankEasy from './../../component/GankEasy'
 import { connect } from 'react-redux'
-import { getEasyCategory, modifyGankEasyCateSelect as modifyCateSelect, getGankEasyData as getData } from './../actions'
+import { getEasyCategory, modifyGankEasyCateSelect as modifyCateSelect, getGankEasyData as getData } from './../../actions'
 
 const mapStateToProps = (state, ownProps) => {
   const { 

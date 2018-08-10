@@ -1,6 +1,6 @@
-import V2exIndex from './../component/V2exIndex'
+import V2exIndex from './../../component/V2exIndex'
 import { connect } from 'react-redux'
-import { getV2exLatest as getLatest, getV2exHot as getHot } from './../actions'
+import { getV2exLatest as getLatest, getV2exHot as getHot } from './../../actions'
 
 const mapStateToProps = (state, ownProps) => {
 

@@ -3,8 +3,8 @@ import { Provider } from 'react-redux'
 import { Route, Switch, Prompt, BrowserRouter, withRouter } from 'react-router-dom'
 import Gank from './../component/Gank'
 import V2ex from './../component/V2ex'
-import Menu from './../container/Menu'
-import MenuToggle from './../container/MenuToggle'
+import Menu from './../container/commons/Menu'
+import MenuToggle from './../container/commons/MenuToggle'
 
 import store from './../store'
 

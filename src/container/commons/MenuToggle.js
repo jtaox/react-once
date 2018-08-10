@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { menuStatusChange } from './../actions'
-import style from './../style/global.less'
-import { toggleMenuLeftOffset } from './../style/values.less'
-import { throttle, debounce } from './../utils'
+import { menuStatusChange } from './../../actions'
+import style from './../../style/global.less'
+import { toggleMenuLeftOffset } from './../../style/values.less'
+import { throttle, debounce } from './../../utils'
 
 class MenuToggle extends Component {
   constructor(props) {

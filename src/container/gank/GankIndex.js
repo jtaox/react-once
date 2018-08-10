@@ -1,7 +1,7 @@
-import GankIndex from './../component/GankIndex'
+import GankIndex from './../../component/GankIndex'
 import { connect } from 'react-redux'
-import { getGankList as getList, getCategory  } from './../actions'
-import { gankSlideIndexCache } from './../utils'
+import { getGankList as getList, getCategory  } from './../../actions'
+import { gankSlideIndexCache } from './../../utils'
 
 const mapState2Props = (state, ownProps) => {
   const { list, isFetching } = state.gank.gankIndex

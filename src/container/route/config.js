@@ -1,10 +1,10 @@
-import GankSetting from './../GankSetting'
-import GankIndex from './../GankIndex'
-import GankWelfare from './../GankWelfare'
-import GankEasy from './../GankEasy'
+import GankSetting from './../gank/GankSetting'
+import GankIndex from './../gank/GankIndex'
+import GankWelfare from './../gank/GankWelfare'
+import GankEasy from './../gank/GankEasy'
 
-import V2exIndex from './../V2exIndex'
-import V2exNode from './../V2exNode'
+import V2exIndex from './../v2ex/V2exIndex'
+import V2exNode from './../v2ex/V2exNode'
 
 export const gankRoutes = [
   {

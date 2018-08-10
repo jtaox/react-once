@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import V2exNode from '../component/V2exNode'
-import { getAllNodes } from './../actions'
+import V2exNode from './../../component/V2exNode'
+import { getAllNodes } from './../../actions'
 
 const mapStateToProps = (state) => {
   const { all: allNodes, common: commonNodes } = state.v2ex.nodes

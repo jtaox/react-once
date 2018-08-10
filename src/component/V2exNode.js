@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink, Route, Redirect, Switch } from 'react-router-dom'
 import style from './../style/v2ex.less'
-import V2exPosts from './../container/V2exPosts'
-import V2exPost from './../container/V2exPost'
+import V2exPosts from './../container/v2ex/V2exPosts'
+import V2exPost from './../container/v2ex/V2exPost'
 import { classnames } from './../utils'
 
  class V2exNode extends Component {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { menuStatusChange } from './../actions'
-import style from './../style/global.less'
+import { menuStatusChange } from './../../actions'
+import style from './../../style/global.less'
 
 class MenuWrap extends Component {
   handleStateChange(state) {
