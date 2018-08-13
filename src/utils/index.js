@@ -72,3 +72,14 @@ export const throttle = (fun, interval = 300) => {
       }, interval);
   }
 }
+
+export const formatDate = (timestamp) => {
+  let time = (Date.now() / 1000 - timestamp).toFixed(0)
+  if (time <= 60) return time + '秒'
+  time = (time / 60).toFixed(0)
+  if (time <= 60) return time + '分钟'
+  time = (time / 60).toFixed(0)
+  if (time <= 24) return time + '小时'
+  time = (time / 24).toFixed(2)
+  return time + '天'
+}
