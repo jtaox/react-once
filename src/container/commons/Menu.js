@@ -12,6 +12,7 @@ class MenuWrap extends Component {
   }
   
   render() {
+    console.log(this.props.isOpen, 'this.props.isOpen')
     return (
       <Menu className={ style.menu } isOpen={ this.props.isOpen }
         pageWrapId={ "page-wrap" }
@@ -23,9 +24,12 @@ class MenuWrap extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  isOpen: state.menu.isOpen
-})
+const mapStateToProps = (state, ownProps) => {
+  console.log(state, '-----')
+  return {
+    isOpen: state.menu.isOpen
+  }
+}
 
 export default connect(mapStateToProps, {
   menuStatusChange
